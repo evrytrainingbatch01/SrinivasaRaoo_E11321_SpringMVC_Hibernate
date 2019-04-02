@@ -30,8 +30,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
   <beans:bean id="registrationactivities" class="com.evry.service.RegistrationActivities"></beans:bean>
-
+   <beans:bean id="loginactivities" class="com.evry.service.LoginActivities"></beans:bean>
 <beans:bean id="registrationdao" class="com.evry.DAO.RegistrationDAO"></beans:bean>
+<beans:bean id="logindao" class="com.evry.DAO.LoginDAO"></beans:bean>
+
 <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
       <beans:property name="dataSource" ref="mydatasource" />
       <beans:property name="packagesToScan" value="com.evry.DTO" />

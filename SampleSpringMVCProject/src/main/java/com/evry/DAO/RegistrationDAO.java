@@ -4,18 +4,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.evry.DTO.Registration;
 
 
+@Repository
 public class RegistrationDAO {
 
 	@Autowired
 	private SessionFactory sessionfactory;
-	Session session;
-	Transaction tn;
+	private static Session session;
+	private static Transaction tn;
+	private boolean flag=true;
 	
-	public void addUser(Registration reg)
+	
+	//this method is used to add the user details entered as part of registration into the table "user_details_springmvc" of DB Aero.
+	public boolean addUser(Registration reg)
 	{
 		System.out.println("Control reached DTO class");
 		try {
@@ -37,6 +42,7 @@ public class RegistrationDAO {
 			{
 				tn.rollback();
 			}
+			flag=false;
 			e.printStackTrace();
 		}
 		finally {
@@ -44,5 +50,7 @@ public class RegistrationDAO {
             session.close();
             sessionfactory.close();
 		}
+		
+		return flag;
 	}
 }
